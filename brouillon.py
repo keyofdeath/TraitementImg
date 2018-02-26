@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import scipy
+import cv2
 
 from ImgOperator.Filtre.Laplacien import Laplacien
 
