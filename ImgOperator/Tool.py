@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import cv2
+import numpy as np
 import glob, os
 
 
@@ -26,6 +27,14 @@ def take_pic(cam):
             finally:
                 print("take")
             break
+
+
+def creat_empty_img(height, width):
+    """
+
+    :return:
+    """
+    return np.zeros((height, width, 3), np.uint8)
 
 
 if __name__ == "__main__":
