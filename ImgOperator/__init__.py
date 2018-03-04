@@ -3,8 +3,7 @@
 
 from ImgOperator.ImgOperator import ImgOprerator
 
-from ImgOperator.Tool import take_pic
-from ImgOperator.Tool import creat_empty_img
+from ImgOperator.Tool import *
 
 from ImgOperator.Oporation import Oporation
 from ImgOperator.Trasformations import *
