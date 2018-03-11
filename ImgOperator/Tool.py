@@ -35,7 +35,7 @@ def creat_empty_img(height, width):
 
     :return:
     """
-    return np.zeros((height, width, 3), np.uint8)
+    return np.zeros((int(height) + 1, int(width) + 1, 3), np.uint8)
 
 
 def get_all_pix_between_2_point(point_a, point_b, axe):
