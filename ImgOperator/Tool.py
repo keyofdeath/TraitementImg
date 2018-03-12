@@ -4,6 +4,7 @@
 import cv2
 import numpy as np
 import glob
+from ImgOperator.Filtration.Canny import ImgCanny
 from copy import deepcopy
 
 
@@ -60,6 +61,49 @@ def get_all_pix_between_2_point(point_a, point_b, axe):
     for a in range(point_a[axe], point_b[axe], incr):
         res.append([int(fy(a, m, p)), int(fx(a, m, p))])
     return res
+
+
+def get_4_point_contour(img):
+    """
+
+    :param img:
+    :return:
+    """
+
+    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    gray_fram_filtre = cv2.GaussianBlur(gray, (3, 3), 0)
+    canny = ImgCanny()
+    edge = canny.apply(gray_fram_filtre)
+    cntr_frame, contours, hierarchy = cv2.findContours(edge, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+    cnts = sorted(contours, key=cv2.contourArea, reverse=True)[:10]
+    sigma = 0.03
+    # loop over our contours
+    for c in cnts:
+        # approximate the contour
+        peri = cv2.arcLength(c, True)
+        # Ramer–Douglas–Peucker algorithm
+        approx = cv2.approxPolyDP(c, sigma * peri, True)
+
+        # if our approximated contour has four points, then
+        # we can assume that we have found our screen
+        if len(approx) == 4:
+            pts = approx.reshape(4, 2)
+            rect = np.zeros((4, 2), dtype="float32")
+            # on somme chaque position
+            s = pts.sum(axis=1)
+            # le coin haut gauche est la somme la plus petit
+            rect[0] = pts[np.argmin(s)]
+            # Le coin bas droit est la somme la plus grande
+            rect[3] = pts[np.argmax(s)]
+            # on calcule la difference entre chaque position
+            diff = np.diff(pts, axis=1)
+            # La position haut gauche aura la plus petit diférence
+            rect[1] = pts[np.argmin(diff)]
+            # La position bas gauche aura la plus grande différence
+            rect[2] = pts[np.argmax(diff)]
+            return rect
+
+    return None
 
 
 if __name__ == "__main__":

@@ -126,6 +126,11 @@ def perspectiv_trasform(img, contour):
 
 
 def nothing(x):
+    """
+    LA focntion fait...
+    :param x: lellel
+    :return: eelel
+    """
     pass
 
 
