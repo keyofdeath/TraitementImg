@@ -28,5 +28,5 @@ Utilisation
 Pour executer le programme il faut avoir une web cam mobile pour pouvoir l'orienter sur la table0
 1. Démarrer le fichier main.py
 2. Présenter une carte a jouer sur la table
-    exemple: ![alt text](https://github.com/keyofdeath/TraitementImg/blob/master/imgSample/pic_2.jpg)
-3. Le résulta sera ![alt text](https://github.com/keyofdeath/TraitementImg/blob/master/imgSample/res.jpg)
+    exemple: https://github.com/keyofdeath/TraitementImg/blob/master/imgSample/pic_2.jpg
+3. Le résulta sera https://github.com/keyofdeath/TraitementImg/blob/master/imgSample/res.jpg
