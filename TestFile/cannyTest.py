@@ -115,13 +115,8 @@ def perspectiv_trasform(img, contour):
     # calculate the perspective transform matrix and warp
     # the perspective to grab the screen
     M = cv2.getPerspectiveTransform(rect, dst)
+    print("M = ", M)
     warp = cv2.warpPerspective(img, M, (maxWidth, maxHeight))
-
-    # convert the warped image to grayscale and then adjust
-    # the intensity of the pixels to have minimum and maximum
-    # values of 0 and 255, respectively
-    warp = cv2.cvtColor(warp, cv2.COLOR_BGR2GRAY)
-    warp = exposure.rescale_intensity(warp, out_range=(0, 255))
     return warp
 
 
@@ -161,9 +156,10 @@ while True:
         if screenCnt is not None:
             cv2.drawContours(frame, [screenCnt], -1, (0, 255, 0), 3)
             cv2.imshow('img contour', frame)
-            # wrap = perspectiv_trasform(orginal, screenCnt)
-            wrap = hand_transform(orginal, screenCnt)
-            cv2.imshow('img trasform', wrap)
+            wrap1 = perspectiv_trasform(orginal, screenCnt)
+            # wrap2 = hand_transform(orginal, screenCnt)
+            cv2.imshow('img trasform 1', wrap1)
+            # cv2.imshow('img trasform 2', wrap2)
 
     except Exception as e:
         print(e)

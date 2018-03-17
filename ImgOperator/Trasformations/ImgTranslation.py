@@ -4,9 +4,6 @@
 from ImgOperator.Oporation import Oporation
 from ImgOperator.Trasformations.VisionTool import *
 from ImgOperator.Tool import *
-import numpy as np
-import cv2
-import time
 
 
 class ImgTranslation(Oporation):
@@ -34,7 +31,7 @@ class ImgTranslation(Oporation):
         self.out_width = int(self.out_width)
 
         self.out_position = [[0, 0], [self.out_width, 0], [0, self.out_height], [self.out_width, self.out_height]]
-        self.mat_l = dlt(2, self.corn_pos, self.out_position)[0]
+        self.mat_l = dlt(2, self.corn_pos, self.out_position)
         self.img_out = creat_empty_img(self.out_height, self.out_width)
         # on cree une liste de coordoner pour appliquer une fonction sur chaque element de cette liste
         self.pos_list = [[x, y] for x in range(self.out_width + 1) for y in range(self.out_height + 1)]

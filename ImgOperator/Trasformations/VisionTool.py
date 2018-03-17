@@ -50,18 +50,17 @@ def dlt_reconstruction(dim, view_number, camera_dlt, image_point):
 
     # Si on est en 2D avec une caméra
     if view_number == 1:
-        # 2D and 1 camera (view), the simplest (and fastest) case
-        # One could calculate inv(H) and input that to the code to speed up things if needed.
-        # (If there is only 1 camera, this transformation is all Floatcanvas2 might need)
+
+        # En 2D et avec une camera c'est le cas le plus simple il duffit de calculer inverse de la matrice
         Hinv = np.linalg.inv(camera_dlt.reshape(3, 3))
-        # Point coordinates in space:
+        # est de recuperer les points
         xyz = np.dot(Hinv, [image_point[0], image_point[1], 1])
         xyz = xyz[0:2] / xyz[2]
     else:
         M = []
         for i in range(view_number):
             L = camera_dlt[i, :]
-            u, v = image_point[i][0], image_point[i][1]  # this indexing works for both list and numpy array
+            u, v = image_point[i][0], image_point[i][1]
             if dim == 2:
                 M.append([L[0] - u * L[6], L[1] - u * L[7], L[2] - u * L[8]])
                 M.append([L[3] - v * L[6], L[4] - v * L[7], L[5] - v * L[8]])
@@ -69,9 +68,9 @@ def dlt_reconstruction(dim, view_number, camera_dlt, image_point):
                 M.append([L[0] - u * L[8], L[1] - u * L[9], L[2] - u * L[10], L[3] - u * L[11]])
                 M.append([L[4] - v * L[8], L[5] - v * L[9], L[6] - v * L[10], L[7] - v * L[11]])
 
-        # Find the xyz coordinates:
+        # on cherche nos psition x y z
         U, S, Vh = np.linalg.svd(np.asarray(M))
-        # Point coordinates in space:
+        # Point positiosner dans l'espace
         xyz = Vh[-1, 0:-1] / Vh[-1, -1]
 
     return xyz
@@ -126,23 +125,18 @@ def dlt(dim, object_point, img_point):
             A.append([0, 0, 0, 0, x, y, z, 1, -v * x, -v * y, -v * z, -v])
 
     A = np.asarray(A)
-    # Find the 11 (or 8 for 2D DLT) parameters:
+    # Application d'une Singular Value Decomposition.
     U, S, Vh = np.linalg.svd(A)
-    # The parameters are in the last line of Vh and normalize them:
+    # Le paramètres et la derrniere ligne
     L = Vh[-1, :] / Vh[-1, -1]
-    # Camera projection matrix:
+    # matice de projection
     H = L.reshape(3, dim + 1)
-    # Denormalization:
+    # on denormalise
     H = np.dot(np.dot(np.linalg.pinv(T_img_point), H), Txyz)
     H = H / H[-1, -1]
-    L = H.flatten(0)
-    # Mean error of the DLT (mean residual of the DLT transformation in units of camera coordinates):
-    img_point_2 = np.dot(H, np.concatenate((object_point.T, np.ones((1, object_point.shape[0])))))
-    img_point_2 = img_point_2 / img_point_2[2, :]
-    # mean distance:
-    err = np.sqrt(np.mean(np.sum((img_point_2[0:2, :].T - img_point) ** 2, 1)))
+    L = H.flatten()
 
-    return L, err
+    return L
 
 
 if __name__ == "__main__":
