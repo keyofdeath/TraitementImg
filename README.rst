@@ -12,8 +12,7 @@ Dépendance
 
 - OpenCv 3
 - Numpy
-Cette dépendance est temporaire
-- Image Hash 4.0
+- Image Hash 4.0 (Cette dépendance est temporaire)
 
 Installation
 ============
