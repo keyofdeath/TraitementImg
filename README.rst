@@ -4,7 +4,7 @@ Projet Traitement IMG
 
 Python version
 ==============
-Déveloper sur Anaconda python 3.6 sur Windows 10
+Développer avec Anaconda python 3.6 sur Windows 10
 - https://www.anaconda.com/download/
 
 Dépendance
@@ -12,7 +12,7 @@ Dépendance
 
 - OpenCv 3
 - Numpy
-- Image Hash 4.0 (Cette dépendance est temporaire)
+- Image Hash 4.0
 
 Installation
 ============
@@ -27,9 +27,11 @@ Installation
 
 Utilisation
 ===========
-Pour executer le programme il faut avoir une web cam mobile pour pouvoir l'orienter sur la table
+Pour exécuter le programme il faut avoir une webcam mobile pour pouvoir l'orienter sur la table
 - Démarrer le fichier main.py
-- Présenter une carte a jouer sur la table
-    exemple: https://github.com/keyofdeath/TraitementImg/blob/master/imgSample/pic_2.jpg
-- Le résulta sera https://github.com/keyofdeath/TraitementImg/blob/master/imgSample/res.jpg
-avec son nom qui sera afficher dans la console
+- Suivre le menu
+
+Si vous souhaiter télécharger de nouveau set pour reconnaitre les cartes il faut choisir l'option 1 dans le menu
+La reconnaissance marche que si le carte est poser sur la table.
+Si vous n'avers pas de carte Magic je fourni plusieurs images dans le dossier imgSample. Se sont tous des cartes de l'édition 'revised edition.json'
+

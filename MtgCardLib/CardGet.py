@@ -4,7 +4,6 @@
 import os
 import codecs
 import json
-import urllib3
 import urllib.request
 import cv2
 import numpy as np
@@ -43,15 +42,13 @@ class CardGet(object):
         # Traitement basique sur la chaine
         set_name = set_name.lower()
         set_name = set_name.strip()
-        # pour retirer les character spéciaux
-        set_name = ''.join(e for e in set_name if e.isalnum())
 
         if os.path.exists("{}.json".format(set_name)):
             print("Set found in path")
             f = codecs.open("{}.json".format(set_name), 'r', 'utf-8')
             self.card_set = json.load(f)
         else:
-            print("Set don't found in path doawnloding...")
+            print("Set n'a pas été trouver dans vos fichier..")
             self.__get_json_set(set_name)
             self.__set_set_img_hash()
             # on l'écrit en utf8 dans notre fichier
@@ -77,19 +74,13 @@ class CardGet(object):
 
     def __get_json_set(self, set_name):
 
-        print("Get the json set")
-        http = urllib3.PoolManager()
-        data = json.loads(http.request('GET', "http://mtgjson.com/json/AllSets.json").data)
-        # on l'écrit en utf8 dans notre fichier
-        out_json = codecs.open("cardJson.json", "w", "utf-8")
-        json.dump(data, out_json)
-        out_json.close()
-        # puis on le re ouvre en utf8
+        # on l'ouvre en utf8
         f = codecs.open("cardJson.json", 'r', 'utf-8')
         data = json.load(f)
         # on controle que le set donner existe si oui on recupaire le clef du set demander
         set_key = list(filter(lambda k: data[k]["name"].lower() == set_name, data))
         if len(set_key) == 0:
+            print("Set")
             raise ValueError("Le set donner n'existe pas ou n'a pas été trouver")
         dic_set = data[set_key[0]]
 

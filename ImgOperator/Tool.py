@@ -5,7 +5,6 @@ import cv2
 import numpy as np
 import glob
 from ImgOperator.Filtration.Canny import ImgCanny
-from copy import deepcopy
 
 
 def take_pic(cam):
@@ -65,9 +64,9 @@ def get_all_pix_between_2_point(point_a, point_b, axe):
 
 def get_4_point_contour(img):
     """
-
+    Renvoie les 4 coint de la carte qui dans l'image donnée
     :param img:
-    :return:
+    :return: 4 coint de la carte
     """
 
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -97,7 +96,7 @@ def get_4_point_contour(img):
             rect[3] = pts[np.argmax(s)]
             # on calcule la difference entre chaque position
             diff = np.diff(pts, axis=1)
-            # La position haut gauche aura la plus petit diférence
+            # La position haut droit aura la plus petit diférence
             rect[1] = pts[np.argmin(diff)]
             # La position bas gauche aura la plus grande différence
             rect[2] = pts[np.argmax(diff)]

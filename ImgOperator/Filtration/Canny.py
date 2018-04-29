@@ -7,6 +7,9 @@ import numpy as np
 
 
 class ImgCanny(Oporation):
+    """
+    Applique une filtre canny
+    """
 
     def __init__(self, sigma=0.33):
         super().__init__()

@@ -2,7 +2,10 @@
 # -*- coding: utf-8 -*-
 
 
-class Oporation():
+class Oporation:
+    """
+    Class générique pour faire une opération sur une image
+    """
 
     def __init__(self):
         pass
