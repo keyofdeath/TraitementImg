@@ -35,3 +35,5 @@ Si vous souhaiter télécharger de nouveau set pour reconnaitre les cartes il fa
 La reconnaissance marche que si la carte est poser sur la table.
 Si vous n'avez pas de carte Magic je fourni plusieurs images dans le dossier imgSample. Se sont toutes des cartes de l'édition 'revised edition.json'
 
+Pour vous aider une vidéo est disponible 'Vidéo tuto.wmv'
+
