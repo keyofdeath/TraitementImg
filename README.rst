@@ -31,7 +31,7 @@ Pour exécuter le programme il faut avoir une webcam mobile pour pouvoir l'orien
 - Démarrer le fichier main.py
 - Suivre le menu
 
-Si vous souhaiter télécharger de nouveau set pour reconnaitre les cartes il faut choisir l'option 1 dans le menu
-La reconnaissance marche que si le carte est poser sur la table.
-Si vous n'avers pas de carte Magic je fourni plusieurs images dans le dossier imgSample. Se sont tous des cartes de l'édition 'revised edition.json'
+Si vous souhaiter télécharger de nouveau set pour reconnaitre les cartes il faut choisir l'option 1 dans le menu.
+La reconnaissance marche que si la carte est poser sur la table.
+Si vous n'avez pas de carte Magic je fourni plusieurs images dans le dossier imgSample. Se sont toutes des cartes de l'édition 'revised edition.json'
 
